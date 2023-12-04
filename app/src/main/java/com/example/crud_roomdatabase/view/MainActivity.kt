@@ -18,9 +18,9 @@ import com.example.crud_roomdatabase.data.model.Student
 import com.example.crud_roomdatabase.viewmodel.StudentViewModel
 import com.example.crud_roomdatabase.viewmodel.StudentViewModelFactory
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),OnItemClickListener {
     private lateinit var binding: ActivityMainBinding
-    private val adapter = StudentListAdapter()
+    private val adapter = StudentListAdapter(this)
 
     private val studentViewModel: StudentViewModel by viewModels {
         StudentViewModelFactory((application as StudentsApplication).repository)
@@ -63,8 +63,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onItemClick(student: Student) {
-//        val bottomSheetFragment = DetailBottomSheetFragment.newInstance(student)
-//        bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
-//    }
+    override fun onItemClick(student: Student) {
+        val bottomSheetFragment = DetailBottomSheetFragment.newInstance(student)
+        bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+    }
 }
