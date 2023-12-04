@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">crud_roomdatabase</string>
     <string name="add_student">Add Student</string>
+    <string name="name_label">Name: %s</string>
+    <string name="class_label">Class: %s</string>
+    <string name="age_label">Age: %s</string>
+    <string name="gpa_label">GPA: %s</string>
 </resources>

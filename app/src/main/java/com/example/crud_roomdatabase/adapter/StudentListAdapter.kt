@@ -1,5 +1,6 @@
 package com.example.crud_roomdatabase.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -18,7 +19,7 @@ class StudentListAdapter(
     fun setStudentList(newStudents: List<Student>) {
         students.clear()
         students.addAll(newStudents)
-        notifyDataSetChanged()
+        notifyItemChanged(0, itemCount)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
@@ -48,7 +49,6 @@ class StudentListAdapter(
             itemClickListener.onItemClick(
                 students[position]
             )
-            Toast.makeText(holder.itemView.context, "Invalid input", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.crud_roomdatabase.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import androidx.activity.viewModels
@@ -60,6 +61,7 @@ class MainActivity : AppCompatActivity(),OnItemClickListener {
         binding.addStudent.setOnClickListener {
             val bottomSheet = BottomSheetDialogInsert()
             bottomSheet.show(supportFragmentManager,"Insert Student")
+            Log.d("add", "Huhu")
         }
     }
 
