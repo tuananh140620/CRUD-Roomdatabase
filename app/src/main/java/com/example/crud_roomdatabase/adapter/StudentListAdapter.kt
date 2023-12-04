@@ -14,12 +14,25 @@ class StudentListAdapter(
     private val itemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<StudentViewHolder>() {
 
-    private var students = mutableListOf<Student>()
+    var students = mutableListOf<Student>()
+    private var isDeleteButtonVisible = false
+
 
     fun setStudentList(newStudents: List<Student>) {
         students.clear()
         students.addAll(newStudents)
         notifyItemChanged(0, itemCount)
+    }
+    fun removeStudent(position: Int) {
+        if (position < students.size) {
+            students.removeAt(position)
+            notifyItemRemoved(position)
+        }
+    }
+
+    fun showDeleteButton(visible: Boolean) {
+        isDeleteButtonVisible = visible
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {

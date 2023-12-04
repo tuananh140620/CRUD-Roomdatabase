@@ -12,10 +12,14 @@ import kotlinx.coroutines.launch
 
 public class StudentViewModel(
     private val repository: StudentRepository
-) :ViewModel() {
+) : ViewModel() {
     val allStudents: LiveData<List<Student>> = repository.allStudents.asLiveData()
 
     fun insert(student: Student) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(student)
+    }
+
+    fun delete(student: Student) = viewModelScope.launch(Dispatchers.IO) {
+        repository.delete(student)
     }
 }

@@ -13,4 +13,8 @@ class StudentRepository(
     fun insert(student: Student){
         studentDao.insert(student)
     }
+
+    fun delete(student: Student){
+        studentDao.delete(student)
+    }
 }
