@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">crud_roomdatabase</string>
+    <string name="add_student">Add Student</string>
+</resources>
