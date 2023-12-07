@@ -30,11 +30,6 @@ class StudentListAdapter(
         }
     }
 
-    fun showDeleteButton(visible: Boolean) {
-        isDeleteButtonVisible = visible
-        notifyDataSetChanged()
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemStudentBinding.inflate(inflater, parent, false)

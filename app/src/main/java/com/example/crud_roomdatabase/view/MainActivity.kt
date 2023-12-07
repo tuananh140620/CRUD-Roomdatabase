@@ -23,7 +23,7 @@ import com.example.crud_roomdatabase.viewmodel.StudentViewModel
 import com.example.crud_roomdatabase.viewmodel.StudentViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity(),OnItemClickListener {
+class MainActivity : AppCompatActivity(), OnItemClickListener {
     private lateinit var binding: ActivityMainBinding
     private val adapter = StudentListAdapter(this)
 
@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity(),OnItemClickListener {
         setStatusBarColor()
         setAdapterStudent()
         insertStudent()
+        deleteStudentItemTouchHelper()
     }
 
     private fun setAdapterStudent() {
@@ -51,7 +52,11 @@ class MainActivity : AppCompatActivity(),OnItemClickListener {
             adapter.setStudentList(studentList)
         }
         binding.recyclerview.adapter = adapter
-        // Tạo một ItemTouchHelper và gán cho RecyclerView
+
+
+    }
+
+    private fun deleteStudentItemTouchHelper() {
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
             0,
             ItemTouchHelper.LEFT
@@ -61,34 +66,27 @@ class MainActivity : AppCompatActivity(),OnItemClickListener {
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                // Không cần xử lý khi di chuyển item
                 return false
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                // Xử lý khi item bị vuốt
                 val position = viewHolder.adapterPosition
                 val student = adapter.students[position]
 
-                // Hiển thị nút delete bên phải và xử lý khi nút được nhấn
                 val deleteButton = Snackbar.make(
                     binding.root,
                     "Delete ${student.name}?",
                     Snackbar.LENGTH_LONG
                 )
                 deleteButton.setAction("Delete") {
-                    // Xóa sinh viên từ danh sách khi nút Delete được nhấn
                     adapter.removeStudent(position)
-                    // Thực hiện xóa trong ViewModel hoặc database nếu cần
                     studentViewModel.delete(student)
                 }
                 deleteButton.show()
             }
         })
 
-        // Gán ItemTouchHelper cho RecyclerView
         itemTouchHelper.attachToRecyclerView(binding.recyclerview)
-
     }
 
     private fun setStatusBarColor() {
@@ -98,11 +96,10 @@ class MainActivity : AppCompatActivity(),OnItemClickListener {
         window.statusBarColor = ContextCompat.getColor(this, R.color.C688EC)
     }
 
-    private fun insertStudent(){
+    private fun insertStudent() {
         binding.addStudent.setOnClickListener {
             val bottomSheet = BottomSheetDialogInsert()
-            bottomSheet.show(supportFragmentManager,"Insert Student")
-            Log.d("add", "Huhu")
+            bottomSheet.show(supportFragmentManager, "Insert Student")
         }
     }
 
