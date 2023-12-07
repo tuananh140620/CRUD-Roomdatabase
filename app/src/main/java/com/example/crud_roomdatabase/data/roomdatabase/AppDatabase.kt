@@ -10,7 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Student::class], version = 2, exportSchema = true)
+@Database(entities = [Student::class], version = 3, exportSchema = true)
 abstract class StudentRoomDatabase : RoomDatabase() {
     abstract fun studentDao(): StudentDao
 
@@ -38,19 +38,19 @@ abstract class StudentRoomDatabase : RoomDatabase() {
 
         private class StudentDatabaseCallback(
             private val scope: CoroutineScope
-        ) : RoomDatabase.Callback() {
+        ) : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
-                        populateDatabase(database.studentDao())
+//                        populateDatabase(database.studentDao())
                     }
                 }
 
             }
 
             fun populateDatabase(studentDao: StudentDao) {
-                studentDao.deleteAll()
+//                studentDao.deleteAll()
 
                 val students = listOf(
                     Student(1, "asset/avatar1.jpg", "Nguyễn Tuấn Anh", 23, "HE140888", 9.6),

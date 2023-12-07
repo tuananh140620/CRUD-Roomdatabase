@@ -10,11 +10,15 @@ class StudentRepository(
 ) {
     val allStudents: Flow<List<Student>> = studentDao.getAll()
 
-    fun insert(student: Student){
+    fun insert(student: Student) {
         studentDao.insert(student)
     }
 
-    fun delete(student: Student){
+    fun delete(student: Student) {
         studentDao.delete(student)
+    }
+
+    fun update(student: Student) {
+        studentDao.update(student)
     }
 }

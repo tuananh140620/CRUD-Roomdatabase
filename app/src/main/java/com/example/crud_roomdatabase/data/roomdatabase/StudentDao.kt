@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.example.crud_roomdatabase.data.model.Student
 import kotlinx.coroutines.flow.Flow
 
@@ -21,7 +22,11 @@ interface StudentDao {
 
     @Query("DELETE FROM students")
     fun deleteAll()
+
     @Delete
     fun delete(student: Student)
+
+    @Update
+    fun update(student: Student)
 
 }

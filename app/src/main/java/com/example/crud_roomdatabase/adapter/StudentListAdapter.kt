@@ -15,7 +15,6 @@ class StudentListAdapter(
 ) : RecyclerView.Adapter<StudentViewHolder>() {
 
     var students = mutableListOf<Student>()
-    private var isDeleteButtonVisible = false
 
 
     fun setStudentList(newStudents: List<Student>) {
@@ -55,6 +54,12 @@ class StudentListAdapter(
 
         holder.itemView.setOnClickListener {
             itemClickListener.onItemClick(
+                students[position]
+            )
+        }
+
+        binding.imMore.setOnClickListener {
+            itemClickListener.onUpdateItemClick(
                 students[position]
             )
         }

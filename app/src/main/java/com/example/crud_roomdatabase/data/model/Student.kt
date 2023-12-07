@@ -2,6 +2,7 @@ package com.example.crud_roomdatabase.data.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.text.Editable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -23,8 +24,7 @@ data class Student(
         parcel.readInt(),
         parcel.readString(),
         parcel.readDouble()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)

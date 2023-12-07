@@ -17,6 +17,7 @@ import com.example.crud_roomdatabase.adapter.StudentListAdapter
 import com.example.crud_roomdatabase.databinding.ActivityMainBinding
 import com.example.crud_roomdatabase.bottomsheet.BottomSheetDialogInsert
 import com.example.crud_roomdatabase.bottomsheet.DetailBottomSheetFragment
+import com.example.crud_roomdatabase.bottomsheet.UpdateBottomSheetFragment
 import com.example.crud_roomdatabase.callback.OnItemClickListener
 import com.example.crud_roomdatabase.data.model.Student
 import com.example.crud_roomdatabase.viewmodel.StudentViewModel
@@ -104,7 +105,12 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onItemClick(student: Student) {
-        val bottomSheetFragment = DetailBottomSheetFragment.newInstance(student)
-        bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+        val bottomDetailSheetFragment = DetailBottomSheetFragment.newInstance(student)
+        bottomDetailSheetFragment.show(supportFragmentManager, bottomDetailSheetFragment.tag)
+    }
+
+    override fun onUpdateItemClick(student: Student) {
+        val bottomSheetUpdateFragment = UpdateBottomSheetFragment.newInstance(student)
+        bottomSheetUpdateFragment.show(supportFragmentManager,bottomSheetUpdateFragment.tag)
     }
 }
