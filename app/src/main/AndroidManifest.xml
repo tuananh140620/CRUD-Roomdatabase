@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Crud_roomdatabase">
         <activity
+            android:name=".view.SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>

@@ -25,11 +25,10 @@ class StudentViewModel(
     }
 
     fun update(student: Student) = viewModelScope.launch(Dispatchers.IO) {
-        try {
-            repository.update(student)
-            Log.d("UpdateStudent", "Update successful")
-        } catch (e: Exception) {
-            Log.e("UpdateStudent", "Error updating student", e)
-        }
+        repository.update(student)
     }
+    fun searchStudentsByName(searchQuery: String): LiveData<List<Student>> {
+        return repository.searchStudentsByName(searchQuery).asLiveData()
+    }
+
 }

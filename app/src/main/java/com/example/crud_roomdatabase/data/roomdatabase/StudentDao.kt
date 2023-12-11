@@ -28,5 +28,8 @@ interface StudentDao {
 
     @Update
     fun update(student: Student)
+    @Query("SELECT * FROM students WHERE name LIKE '%' || :searchQuery || '%' ORDER BY name ASC")
+    fun searchStudentsByName(searchQuery: String): Flow<List<Student>>
+
 
 }

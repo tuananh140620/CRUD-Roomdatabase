@@ -1,5 +1,6 @@
 package com.example.crud_roomdatabase.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         setAdapterStudent()
         insertStudent()
         deleteStudentItemTouchHelper()
+        searchAllStudent()
     }
 
     private fun setAdapterStudent() {
@@ -112,5 +114,11 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     override fun onUpdateItemClick(student: Student) {
         val bottomSheetUpdateFragment = UpdateBottomSheetFragment.newInstance(student)
         bottomSheetUpdateFragment.show(supportFragmentManager,bottomSheetUpdateFragment.tag)
+    }
+
+    private fun searchAllStudent(){
+        binding.cvSearch.setOnClickListener {
+            startActivity(Intent(this, SearchActivity::class.java))
+        }
     }
 }

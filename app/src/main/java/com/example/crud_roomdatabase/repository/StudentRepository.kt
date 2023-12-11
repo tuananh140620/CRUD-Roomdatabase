@@ -21,4 +21,8 @@ class StudentRepository(
     fun update(student: Student) {
         studentDao.update(student)
     }
+
+    fun searchStudentsByName(searchQuery: String): Flow<List<Student>> {
+        return studentDao.searchStudentsByName(searchQuery)
+    }
 }
