@@ -7,8 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
 class StudentsApplication : Application() {
-    val applicationScope = CoroutineScope(SupervisorJob())
 
-    val database by lazy { StudentRoomDatabase.getDatabase(this, applicationScope) }
+    private val database by lazy { StudentRoomDatabase.getDatabase(this) }
     val repository by lazy { StudentRepository(database.studentDao()) }
 }
