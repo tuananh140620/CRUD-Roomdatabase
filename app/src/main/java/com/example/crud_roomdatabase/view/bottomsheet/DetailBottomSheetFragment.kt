@@ -1,4 +1,4 @@
-package com.example.crud_roomdatabase.bottomsheet
+package com.example.crud_roomdatabase.view.bottomsheet
 
 import android.os.Bundle
 import android.os.Parcelable

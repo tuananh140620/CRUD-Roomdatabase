@@ -1,54 +1,62 @@
-package com.example.crud_roomdatabase.view
+package com.example.crud_roomdatabase.view.fragment
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.MotionEvent
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.crud_roomdatabase.R
 import com.example.crud_roomdatabase.StudentsApplication
 import com.example.crud_roomdatabase.adapter.StudentListAdapter
-import com.example.crud_roomdatabase.databinding.ActivityMainBinding
-import com.example.crud_roomdatabase.bottomsheet.BottomSheetDialogInsert
-import com.example.crud_roomdatabase.bottomsheet.DetailBottomSheetFragment
-import com.example.crud_roomdatabase.bottomsheet.UpdateBottomSheetFragment
+import com.example.crud_roomdatabase.view.bottomsheet.BottomSheetDialogInsert
+import com.example.crud_roomdatabase.view.bottomsheet.DetailBottomSheetFragment
+import com.example.crud_roomdatabase.view.bottomsheet.UpdateBottomSheetFragment
 import com.example.crud_roomdatabase.callback.OnItemClickListener
 import com.example.crud_roomdatabase.data.model.Student
+import com.example.crud_roomdatabase.databinding.FragmentHomeBinding
+import com.example.crud_roomdatabase.view.activity.SearchActivity
 import com.example.crud_roomdatabase.viewmodel.StudentViewModel
 import com.example.crud_roomdatabase.viewmodel.StudentViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity(), OnItemClickListener {
-    private lateinit var binding: ActivityMainBinding
+
+class HomeFragment : Fragment(), OnItemClickListener {
+    private lateinit var binding: FragmentHomeBinding
     private val adapter = StudentListAdapter(this)
 
     private val studentViewModel: StudentViewModel by viewModels {
-        StudentViewModelFactory((application as StudentsApplication).repository)
+        StudentViewModelFactory((requireActivity().application as StudentsApplication).repository)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentHomeBinding.inflate(layoutInflater)
 
         setStatusBarColor()
         setAdapterStudent()
         insertStudent()
         deleteStudentItemTouchHelper()
         searchAllStudent()
+
+        return binding.root
     }
+
 
     private fun setAdapterStudent() {
         binding.recyclerview.setItemViewCacheSize(20)
-        binding.recyclerview.layoutManager = LinearLayoutManager(this)
-        studentViewModel.allStudents.observe(this) { studentList ->
+        binding.recyclerview.layoutManager = LinearLayoutManager(context)
+        studentViewModel.allStudents.observe(requireActivity()) { studentList ->
             studentList.forEach { student ->
                 studentViewModel.insert(student)
             }
@@ -93,32 +101,39 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     private fun setStatusBarColor() {
-        val window: Window = this.window
+        val window: Window = requireActivity().window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.C688EC)
+        window.statusBarColor = requireContext().getColor(R.color.C688EC)
     }
 
     private fun insertStudent() {
         binding.addStudent.setOnClickListener {
             val bottomSheet = BottomSheetDialogInsert()
-            bottomSheet.show(supportFragmentManager, "Insert Student")
+            bottomSheet.show(parentFragmentManager, bottomSheet.tag)
         }
     }
 
     override fun onItemClick(student: Student) {
         val bottomDetailSheetFragment = DetailBottomSheetFragment.newInstance(student)
-        bottomDetailSheetFragment.show(supportFragmentManager, bottomDetailSheetFragment.tag)
+        bottomDetailSheetFragment.show(parentFragmentManager, bottomDetailSheetFragment.tag)
     }
 
     override fun onUpdateItemClick(student: Student) {
         val bottomSheetUpdateFragment = UpdateBottomSheetFragment.newInstance(student)
-        bottomSheetUpdateFragment.show(supportFragmentManager,bottomSheetUpdateFragment.tag)
+        bottomSheetUpdateFragment.show(parentFragmentManager, bottomSheetUpdateFragment.tag)
     }
 
-    private fun searchAllStudent(){
+    private fun searchAllStudent() {
         binding.cvSearch.setOnClickListener {
-            startActivity(Intent(this, SearchActivity::class.java))
+            startActivity(Intent(context, SearchActivity::class.java))
         }
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            HomeFragment().apply {
+            }
     }
 }

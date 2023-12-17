@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Crud_roomdatabase">
         <activity
-            android:name=".view.SearchActivity"
+            android:name=".view.activity.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

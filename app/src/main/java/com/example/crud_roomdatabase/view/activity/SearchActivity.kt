@@ -1,18 +1,14 @@
-package com.example.crud_roomdatabase.view
+package com.example.crud_roomdatabase.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.crud_roomdatabase.R
 import com.example.crud_roomdatabase.StudentsApplication
 import com.example.crud_roomdatabase.adapter.StudentListAdapter
-import com.example.crud_roomdatabase.bottomsheet.DetailBottomSheetFragment
-import com.example.crud_roomdatabase.bottomsheet.UpdateBottomSheetFragment
+import com.example.crud_roomdatabase.view.bottomsheet.DetailBottomSheetFragment
+import com.example.crud_roomdatabase.view.bottomsheet.UpdateBottomSheetFragment
 import com.example.crud_roomdatabase.callback.OnItemClickListener
 import com.example.crud_roomdatabase.data.model.Student
 import com.example.crud_roomdatabase.databinding.ActivitySearchBinding

@@ -5,4 +5,6 @@
     <string name="class_label">Class: %s</string>
     <string name="age_label">Age: %s</string>
     <string name="gpa_label">GPA: %s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
