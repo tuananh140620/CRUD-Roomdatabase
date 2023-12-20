@@ -1,4 +1,4 @@
-package com.example.crud_roomdatabase.adapter
+package com.example.crud_roomdatabase.view.adapter
 
 import android.util.Log
 import android.view.LayoutInflater

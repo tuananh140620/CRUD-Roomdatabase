@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.crud_roomdatabase.R
 import com.example.crud_roomdatabase.StudentsApplication
-import com.example.crud_roomdatabase.adapter.StudentListAdapter
+import com.example.crud_roomdatabase.view.adapter.StudentListAdapter
 import com.example.crud_roomdatabase.view.bottomsheet.BottomSheetDialogInsert
 import com.example.crud_roomdatabase.view.bottomsheet.DetailBottomSheetFragment
 import com.example.crud_roomdatabase.view.bottomsheet.UpdateBottomSheetFragment

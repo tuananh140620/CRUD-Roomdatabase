@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.crud_roomdatabase.StudentsApplication
-import com.example.crud_roomdatabase.adapter.StudentListAdapter
+import com.example.crud_roomdatabase.view.adapter.StudentListAdapter
 import com.example.crud_roomdatabase.view.bottomsheet.DetailBottomSheetFragment
 import com.example.crud_roomdatabase.view.bottomsheet.UpdateBottomSheetFragment
 import com.example.crud_roomdatabase.callback.OnItemClickListener
