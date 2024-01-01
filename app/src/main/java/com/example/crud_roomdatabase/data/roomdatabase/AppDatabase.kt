@@ -10,7 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Student::class], version = 3, exportSchema = true)
+@Database(entities = [Student::class], version = 5, exportSchema = false)
 abstract class StudentRoomDatabase : RoomDatabase() {
     abstract fun studentDao(): StudentDao
 

@@ -5,20 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import com.example.crud_roomdatabase.StudentsApplication
 import com.example.crud_roomdatabase.data.model.Student
 import com.example.crud_roomdatabase.databinding.BottomSheetDialogInsertBinding
+import com.example.crud_roomdatabase.repository.StudentRepository
 import com.example.crud_roomdatabase.viewmodel.StudentViewModel
+import com.example.crud_roomdatabase.viewmodel.StudentViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class BottomSheetDialogInsert : BottomSheetDialogFragment() {
     private lateinit var binding: BottomSheetDialogInsertBinding
 
-    private val studentViewModel: StudentViewModel by lazy {
-        ViewModelProvider(requireActivity())[StudentViewModel::class.java]
+    private val studentViewModel: StudentViewModel by viewModels {
+        StudentViewModelFactory((activity?.application as StudentsApplication).repository)
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
