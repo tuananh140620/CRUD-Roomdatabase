@@ -31,4 +31,9 @@ class StudentViewModel(
         return repository.searchStudentsByName(searchQuery).asLiveData()
     }
 
+    fun toggleFavorite(student:Student) = viewModelScope.launch (Dispatchers.IO){
+        student.favorite = !student.favorite
+        repository.update(student)
+    }
+
 }

@@ -6,12 +6,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.crud_roomdatabase.R
 import com.example.crud_roomdatabase.callback.OnItemClickListener
 import com.example.crud_roomdatabase.data.model.Student
 import com.example.crud_roomdatabase.databinding.ItemStudentBinding
+import com.example.crud_roomdatabase.viewmodel.StudentViewModel
 
 class StudentListAdapter(
-    private val itemClickListener: OnItemClickListener
+    private val itemClickListener: OnItemClickListener,
+    private val viewModel: StudentViewModel
 ) : RecyclerView.Adapter<StudentViewHolder>() {
 
     var students = mutableListOf<Student>()
@@ -62,6 +65,13 @@ class StudentListAdapter(
             itemClickListener.onUpdateItemClick(
                 students[position]
             )
+        }
+
+        val favoriteIcon = if (student.favorite) R.drawable.ic_inactive_bookmark else R.drawable.ic_active_bookmark
+        binding.imBookmark.setImageResource(favoriteIcon)
+
+        binding.imBookmark.setOnClickListener {
+            viewModel.toggleFavorite(student)
         }
     }
 }

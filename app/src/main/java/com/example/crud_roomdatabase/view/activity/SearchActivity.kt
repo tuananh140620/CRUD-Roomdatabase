@@ -52,7 +52,7 @@ class SearchActivity : AppCompatActivity() {
                 val bottomSheetUpdateFragment = UpdateBottomSheetFragment.newInstance(student)
                 bottomSheetUpdateFragment.show(supportFragmentManager,bottomSheetUpdateFragment.tag)
             }
-        })
+        },viewModel)
 
         binding.rvListSearch.layoutManager = LinearLayoutManager(this)
         binding.rvListSearch.adapter = adapter

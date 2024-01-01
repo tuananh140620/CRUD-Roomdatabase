@@ -31,7 +31,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class HomeFragment : Fragment(), OnItemClickListener {
     private lateinit var binding: FragmentHomeBinding
-    private val adapter = StudentListAdapter(this)
+    private lateinit var adapter: StudentListAdapter
 
     private val studentViewModel: StudentViewModel by viewModels {
         StudentViewModelFactory((requireActivity().application as StudentsApplication).repository)
@@ -54,6 +54,7 @@ class HomeFragment : Fragment(), OnItemClickListener {
 
 
     private fun setAdapterStudent() {
+        adapter = StudentListAdapter(this,studentViewModel)
         binding.recyclerview.setItemViewCacheSize(20)
         binding.recyclerview.layoutManager = LinearLayoutManager(context)
         studentViewModel.allStudents.observe(requireActivity()) { studentList ->
