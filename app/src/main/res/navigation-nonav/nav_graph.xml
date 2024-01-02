@@ -10,4 +10,14 @@
         android:name="com.example.crud_roomdatabase.view.fragment.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/bookmarkFragment"
+        android:name="com.example.crud_roomdatabase.view.fragment.BookmarkFragment"
+        android:label="fragment_bookmark"
+        tools:layout="@layout/fragment_bookmark" />
+    <fragment
+        android:id="@+id/recentFragment"
+        android:name="com.example.crud_roomdatabase.view.fragment.RecentFragment"
+        android:label="fragment_recent"
+        tools:layout="@layout/fragment_recent" />
 </navigation>

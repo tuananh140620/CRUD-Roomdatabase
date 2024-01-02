@@ -17,9 +17,6 @@ interface StudentDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(student: Student)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(students: List<Student>)
-
     @Query("DELETE FROM students")
     fun deleteAll()
 
@@ -31,5 +28,7 @@ interface StudentDao {
     @Query("SELECT * FROM students WHERE name LIKE '%' || :searchQuery || '%' ORDER BY name ASC")
     fun searchStudentsByName(searchQuery: String): Flow<List<Student>>
 
+    @Query("SELECT * FROM students WHERE favorite = 1")
+    fun getListFavorite(): Flow<List<Student>>
 
 }
