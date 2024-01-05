@@ -23,6 +23,7 @@
         android:layout_height="75dp"
         android:elevation="52dp"
         app:elevation="52dp"
+        android:background="#F5F5FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
