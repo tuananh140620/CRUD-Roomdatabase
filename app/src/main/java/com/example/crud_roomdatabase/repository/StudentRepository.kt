@@ -25,4 +25,6 @@ class StudentRepository(
     fun searchStudentsByName(searchQuery: String): Flow<List<Student>> {
         return studentDao.searchStudentsByName(searchQuery)
     }
+
+    val listBookmark:Flow<List<Student>> = studentDao.getListFavorite()
 }

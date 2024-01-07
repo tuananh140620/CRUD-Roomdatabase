@@ -1,6 +1,5 @@
 package com.example.crud_roomdatabase.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -35,5 +34,7 @@ class StudentViewModel(
         student.favorite = !student.favorite
         repository.update(student)
     }
+
+    val allBookmark: LiveData<List<Student>> = repository.listBookmark.asLiveData()
 
 }
